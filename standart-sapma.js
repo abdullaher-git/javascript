@@ -1,6 +1,21 @@
-var dizi = [6, 4, 6, 7, 6, 5, 8, 6, 5, 7]; //verilen dizi
-var secilen = []; // dizi farklarının karesi
+var arr = [6, 4, 6, 7, 6, 5, 8, 6, 5, 7]; //verilen dizi
 
+Array.prototype.Sum=function(){
+  return this.reduce((a, b) => a + b, 0);
+}
+Array.prototype.Avg=function(){
+   return this.Sum()/this.length;
+}
+Array.prototype.Std=function(){
+    var ort=this.Avg();   
+   return Math.sqrt(this.map(a=>Math.pow(a - ort, 2)).Avg());
+}
+Array.prototype.StdPercent=function(err){    
+   return this.Avg()/this.Std();
+}
+Array.prototype.StdErr=function(err){    
+   return this.Std()/Math.pow((1- err), 0.5);
+}
 // aritemetik ortalamayı alır
 function aritmetik() {
   var toplam = 0;
